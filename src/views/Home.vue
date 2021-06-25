@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Header :user="user"></Header>
+          <v-devider />
     <v-container>
       <v-row rows="3">
         <ItemCard v-for="item in items" :key="item.id" :item="item" />
@@ -12,12 +12,10 @@
 <script>
 import ItemCard from '@/components/ItemCard.vue'
 import instance from '@/api/instance.js'
-import Header from '@/components/Header.vue'
 
 export default {
   name: 'Home',
   components: {
-    Header,
     ItemCard
   },
   data () {
