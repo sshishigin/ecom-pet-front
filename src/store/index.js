@@ -34,7 +34,7 @@ export default createStore({
             const token = resp.data.token
             const user = JSON.parse(resp.data.user)
             localStorage.setItem('token', token)
-            instance.defaults.headers.common.Authorization = token
+            instance.defaults.headers.common.Authorization = 'Token ' + token
             commit('auth_success', { token, user })
             resolve(resp)
           })
