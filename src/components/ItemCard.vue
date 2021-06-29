@@ -6,7 +6,7 @@
         <v-img :src="item.pic" height="250"></v-img>
       </v-card-media>
       <v-card-actions>
-        <v-btn>Купить</v-btn>
+        <v-btn @click="addToCart(item.id)">В корзину</v-btn>
         <v-btn icon="mdi-heart" color="secondary">Лайк</v-btn>
       </v-card-actions>
     </v-card>
@@ -14,7 +14,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import instance from '@/api/instance.js'
+
 export default {
   name: 'ItemCard',
   props: {
@@ -22,10 +23,10 @@ export default {
   },
   methods: {
     addToCart (id) {
-      axios.post('/api/cart/', { quantity: 1, itemId: id })
+      instance.post('/api/cart/', { quantity: 1, itemId: id })
     },
     like (id) {
-      axios.post('/api/like/', { itemId: id, like: true })
+      instance.post('/api/like/', { itemId: id, like: true })
     }
   }
 }

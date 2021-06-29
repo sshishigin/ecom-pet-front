@@ -9,7 +9,7 @@
 
 <script>
 import instance from '@/api/instance.js'
-import ItemCard from '@/components/ItemCard.vue'
+import ItemCard from '@/components/CartItemCard.vue'
 
 export default {
   name: 'Cart',

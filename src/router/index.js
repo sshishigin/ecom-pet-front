@@ -4,7 +4,6 @@ import Login from '@/views/Login.vue'
 import Register from '@/views/Register.vue'
 import Cart from '@/views/Cart.vue'
 
-
 const routes = [
   {
     path: '/',
