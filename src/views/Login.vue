@@ -1,22 +1,24 @@
 <template>
   <div class="login">
     <v-container>
-      <v-card>
-      <v-row justify="center">
-        <form @submit.prevent="login">
-          <v-col>
-          <input type="text" placeholder="@" v-model="email" />
+        <v-row justify="center">
+          <v-col cols='4'>
+            <form @submit.prevent="login">
+              <v-list>
+              <v-list-item>
+              <input type="text" placeholder="@" v-model="email" />
+              </v-list-item>
+              <v-list-item>
+              <input type="password" placeholder="Password" v-model="password" />
+              </v-list-item>
+              <v-list-item>
+              <v-btn text><input type="submit" value="Login" /></v-btn>
+              </v-list-item>
+              </v-list>
+            </form>
+             <p justify-center> Нет аккаунта? Регистрируйтесь <router-link to="/r egister"> тут. </router-link> </p>
           </v-col>
-          <v-col>
-          <input type="password" placeholder="Password" v-model="password" />
-          </v-col>
-          <v-col>
-          <v-btn text><input type="submit" value="Login" /></v-btn>
-          </v-col>
-        </form>
-      </v-row>
-      <v-dialog> Hello? </v-dialog>
-      </v-card>
+        </v-row>
     </v-container>
   </div>
 </template>
