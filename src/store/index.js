@@ -1,10 +1,12 @@
 import { createStore } from 'vuex'
 import instance from '@/api/instance.js'
+import createPersistedState from 'vuex-persistedstate'
+import * as Cookies from 'js-cookie'
 
 export default createStore({
   state: {
     status: '',
-    user: Object(),
+    user: localStorage.getItem('user'),
     token: localStorage.getItem('token') || ''
   },
   mutations: {
@@ -22,6 +24,7 @@ export default createStore({
     logout (state) {
       state.status = ''
       state.token = ''
+      state.user = {}
     }
   },
   actions: {
@@ -34,6 +37,7 @@ export default createStore({
             const token = resp.data.token
             const user = JSON.parse(resp.data.user)
             localStorage.setItem('token', token)
+            localStorage.setItem('user', user)
             instance.defaults.headers.common.Authorization = 'Token ' + token
             commit('auth_success', { token, user })
             resolve(resp)
@@ -59,5 +63,11 @@ export default createStore({
     isLoggedIn: (state) => !!state.token,
     authStatus: (state) => state.status,
     user: (state) => state.user
-  }
+  },
+  plugins: [
+    createPersistedState({
+      getState: (key) => Cookies.getJSON(key),
+      setState: (key, state) => Cookies.set(key, state, { expires: 3, secure: true })
+    })
+  ]
 })
