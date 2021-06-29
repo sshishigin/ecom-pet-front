@@ -13,7 +13,9 @@
     </router-link>
     <v-divider inset vertical></v-divider>
     <v-btn @click="logout" class="mr-3" v-if="isLoggedIn" text>Logout</v-btn>
-    <v-btn class="mr-3" v-if="!isLoggedIn"> Sign up </v-btn>
+    <router-link to="/register" v-if="!isLoggedIn">
+      <v-btn class="mr-3" > Sign up </v-btn>
+    </router-link>
     <v-btn class="mr-4 ml-5" color="primary" plain>
       <v-icon left icon="mdi-handshake-outline"></v-icon>
 
