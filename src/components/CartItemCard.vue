@@ -7,7 +7,7 @@
         </v-card-media>
         <h4> {{ item.title }} </h4>
         <v-card-actions>
-          <v-btn @click="addToCart(item.id)">В корзину</v-btn>
+          <v-btn @click="removeItemFromCart(item.id)">Убрать из корзины</v-btn>
           <v-btn icon="mdi-heart" color="secondary">Лайк</v-btn>
         </v-card-actions>
       </v-responsive>
@@ -24,8 +24,8 @@ export default {
     item: Object
   },
   methods: {
-    addToCart (id) {
-      instance.post('/api/cart/', { quantity: 1, itemId: id })
+    removeItemFromCart (id) {
+      instance.put('/api/cart/', { itemIdList: [id] })
     },
     like (id) {
       instance.post('/api/like/', { itemId: id, like: true })
