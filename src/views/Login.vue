@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import router from '@/router'
 
 export default {
   name: 'Login',
@@ -44,6 +45,11 @@ export default {
         password: this.password
       }
       this.$store.dispatch('login', user)
+        .then(response => {
+          if (response.status === 200) {
+            router.push('/')
+          }
+        })
     }
   }
 }

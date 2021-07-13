@@ -2,7 +2,7 @@
   <div class="cart">
     <v-container>
         <h1> Корзина </h1>
-        <item-card v-for="item in items" :key="item.id" :item='item' />
+        <item-card v-for="item in items" :key="item.id" :item='item' @remove="removeItem" />
         <v-btn color="success">Оформить заказ</v-btn>
         <v-btn color="primary" dark @click="cleanCart()">Очистить корзину</v-btn>
     </v-container>
@@ -22,8 +22,15 @@ export default {
     }
   },
   methods: {
+    removeItem (id) {
+      instance.put('/api/cart/', { itemIdList: [id.id] })
+      instance.get('/api/cart/').then((meta) => {
+        this.items = meta.data
+      })
+    },
     cleanCart () {
       instance.delete('/api/cart/')
+      this.items = []
     },
     remove (id) {
       instance.put('/api/cart/', { itemIdList: [id], clearCart: false })

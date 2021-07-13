@@ -28,6 +28,7 @@ export default {
     await instance.get('/api/items/').then((meta) => {
       this.items = meta.data
     })
+    console.log(this.items)
   }
 }
 </script>

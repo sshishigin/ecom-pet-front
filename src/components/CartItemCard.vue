@@ -25,7 +25,10 @@ export default {
   },
   methods: {
     removeItemFromCart (id) {
-      instance.put('/api/cart/', { itemIdList: [id] })
+      this.$emit('remove', {
+        id: id
+      })
+      // instance.put('/api/cart/', { itemIdList: [id] })
     },
     like (id) {
       instance.post('/api/like/', { itemId: id, like: true })
